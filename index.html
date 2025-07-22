@@ -57,6 +57,14 @@
             display: flex;
             flex-direction: column;
         }
+
+        .optional-note {
+    font-size: 0.8rem;
+    color: #888;
+    font-weight: normal;
+    margin-left: 10px;
+    font-style: italic;
+}
         
         h1, h2 {
             color: var(--secondary-color);
@@ -441,6 +449,33 @@
                 <input type="text" id="location" placeholder="City, Country">
             </div>
             
+            <h2>Work Experience <span class="optional-note">(leave blank if none)</span></h2>
+<div class="form-group">
+    <label for="work-date">Date/Duration</label>
+    <input type="text" id="work-date" placeholder="e.g., Jan 2022 – Present">
+</div>
+
+<div class="form-group">
+    <label for="job-title">Job Title</label>
+    <input type="text" id="job-title" placeholder="e.g., Software Engineer">
+</div>
+
+<div class="form-group">
+    <label for="company-name">Company Name</label>
+    <input type="text" id="company-name" placeholder="e.g., ABC Tech Solutions">
+</div>
+
+<div class="form-group">
+    <label for="job-location">Location</label>
+    <input type="text" id="job-location" placeholder="City, Country">
+</div>
+
+<div class="form-group">
+    <label for="job-description">Description</label>
+    <textarea id="job-description" placeholder="Describe your key responsibilities and achievements..."></textarea>
+</div>
+
+
             <h2>Skills</h2>
             <div id="skills-container" class="skills-container">
                 <!-- Skills will be added here dynamically -->
@@ -488,6 +523,12 @@
         const degreeInput = document.getElementById('degree');
         const institutionInput = document.getElementById('institution');
         const locationInput = document.getElementById('location');
+        const workDateInput = document.getElementById('work-date');
+const jobTitleInput = document.getElementById('job-title');
+const companyNameInput = document.getElementById('company-name');
+const jobLocationInput = document.getElementById('job-location');
+const jobDescriptionInput = document.getElementById('job-description');
+
         const skillsContainer = document.getElementById('skills-container');
         const languagesContainer = document.getElementById('languages-container');
         const addSkillBtn = document.getElementById('add-skill');
@@ -575,6 +616,8 @@
             // Generate the resume HTML
             let resumeHTML = `
                 <h1>${fullNameInput.value || 'Your Name'}</h1>
+
+                
                 
                 <div class="contact-info">
                     <span><i class="fas fa-map-marker-alt"></i> ${addressInput.value || 'Your Address'}</span>
@@ -614,6 +657,20 @@
                     ${locationInput.value || 'Location'}</p>
                 </div>
                 
+    ${(workDateInput.value || jobTitleInput.value || companyNameInput.value || jobLocationInput.value || jobDescriptionInput.value) ? `
+<div class="section">
+    <h2>Work Experience</h2>
+    <p>
+        ${workDateInput.value ? `<strong>${workDateInput.value}</strong><br>` : ''}
+        ${jobTitleInput.value || companyNameInput.value ? `${jobTitleInput.value || ''} at ${companyNameInput.value || ''}<br>` : ''}
+        ${jobLocationInput.value ? `${jobLocationInput.value}<br>` : ''}
+        ${jobDescriptionInput.value ? `${jobDescriptionInput.value}` : ''}
+    </p>
+</div>
+` : ''}
+
+
+
                 <div class="section">
                     <h2>Skills</h2>
                     <table class="skills-table">
