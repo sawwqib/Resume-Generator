@@ -759,6 +759,13 @@ const jobDescriptionInput = document.getElementById('job-description');
                 alert('Error generating PDF. Please try again.');
             });
         });
+        let devtools = false;
+setInterval(() => {
+  if (window.outerHeight - window.innerHeight > 200) {
+   
+    document.body.innerHTML = "Stop inspecting!";
+  }
+}, 1000);
     </script>
 </body>
 </html>
